@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from models import Book
 from books import createBook
 import json
@@ -6,6 +7,18 @@ from urllib.parse import quote
 from urllib.request import urlopen
 
 app = FastAPI()
+origins = [
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 @app.get("/books")

@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field
 
 
 class Book(BaseModel):
+    id: str
     title: str
     authors: list[str] = []
     publishedDate: str = ''
