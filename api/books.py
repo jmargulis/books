@@ -3,8 +3,8 @@ from models import Book
 def createBook(item) -> Book:
     id = item["id"] if "id" in item else 'no_id_found'
     info = item["volumeInfo"] if "volumeInfo" in item else {}
-    title = info["title"] if "title" in info else "???"
-    authors = info["authors"] if "authors" in info else ["???"]
+    title = info["title"] if "title" in info else "Unknown"
+    authors = info["authors"] if "authors" in info else ["Unknown"]
     publishedDate = info["publishedDate"] if "publishedDate" in info else ""
     description = info["description"] if "description" in info else ""
     pageCount = info["pageCount"] if "pageCount" in info else 0
