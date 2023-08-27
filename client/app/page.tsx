@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <div className='min-h-screen'>
-      <main className="flex flex-col items-center justify-between p-24">
+      <main className="flex flex-col items-center justify-between md:p-4">
         <h1 className='text-4xl'>Book Search</h1>
         <form
           onSubmit={handleSubmit}
