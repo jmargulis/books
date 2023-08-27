@@ -2,19 +2,26 @@
 
 import Books from '@/components/books'
 import { Book } from '@/types/book'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 
 const API_ENDPOINT = 'http://127.0.0.1:8000/books?q='
 
 export default function Home() {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
+
   const [isLoading, setIsLoading] = useState(false);
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState(searchParams.get('q') ?? '')
   const [books, setBooks] = useState<Book[]>([])
 
   const handleSubmit = (e: Event) => {
     e.preventDefault()
     if (query.length) {
       setIsLoading(true)
+      router.replace(pathname + '?q=' + encodeURIComponent(query))
+
       fetch(API_ENDPOINT + encodeURIComponent(query))
       .then(response => response.json())
       .then(data => {
