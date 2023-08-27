@@ -27,7 +27,7 @@ To start the client server locally, run the following:
 #### First time
 ```
 cd client
-cp .env.example .env
+cp .env.example .env.local
 ```
 #### Every time
 ```

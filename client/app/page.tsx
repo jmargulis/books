@@ -5,8 +5,6 @@ import { Book } from '@/types/book'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 
-const API_ENDPOINT = 'http://127.0.0.1:8000/books?q='
-
 export default function Home() {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -22,7 +20,7 @@ export default function Home() {
       setIsLoading(true)
       router.replace(pathname + '?q=' + encodeURIComponent(query))
 
-      fetch(API_ENDPOINT + encodeURIComponent(query))
+      fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + encodeURIComponent(query))
       .then(response => response.json())
       .then(data => {
         if (data && Array.isArray(data)) {
